@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM VALIDATION</title>
+</head>
+<body>
+    <form id="myForm" method="post">
+        <div id="test-event">
+ <label for="">Name</label>
+            <input type="text" name="name" pattern="[A-Za-z]+" placeholder="Enter your name" required>
+        </div>
+        <br>
+        
+        <div>
+             <label for="">Enter your password</label>
+            <input type="password" name="password" placeholder="Enter your password" minlength="8" id="element2"
+                maxlength="16" required>
+        </div>
+        <br>
+        <div>
+             <label for="">Confirm Your password</label>
+            <input type="password" name="confirm_password" placeholder="Confirm your password" minlength="8"
+                maxlength="16" required>
+        </div>
+        <br>
+        <div>
+            <label for="">Enter the date today</label>
+            <input type="date" name="date" placeholder="Enter your date" required>
+        </div>
+        <br>
+        <div>
+            <label for="">Enter the Local time</label>
+            <input type="datetime-local" name="datetime-local" placeholder="Enter your datetime-local" required>
+        </div>
+        <br>
+       
+        <div>
+            <label for="">Enter your Phone Number</label>
+            <input type="tel" name="tel" placeholder="Enter your phone number" pattern="^(07\d{8}|01\d{8}|\+2547\d{8})$"
+                required>
+        </div>
+        <br>
+      
+        <div>
+            <input type="submit" name="submit" value="Submit" id="element1" data-time="12:30">
+        </div>
+        <br>
+    </form>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Perform validation
+            if (validateForm()) {
+                // If the form is valid, submit it
+                this.submit();
+            } else {
+                // If the form is not valid, display an error message or take appropriate action
+                alert("Form validation failed. Please check your input.");
+            }
+        });
+
+        function validateForm() {
+            // Get form fields
+            var name = document.forms["myForm"]["name"].value;
+            var password = document.forms["myForm"]["password"].value;
+            var confirm_password = document.forms["myForm"]["confirm_password"].value;
+            var date = document.forms["myForm"]["date"].value;
+            var datetime_local = document.forms["myForm"]["datetime-local"].value;
+            var tel = document.forms["myForm"]["tel"].value;
+
+            // Perform validation checks
+            // You can add more validation rules as needed
+            if (name == "" || password == "" || confirm_password == "" || date == "" || datetime_local == "" || tel == "") {
+                return false;
+            }
+
+            // Check if passwords match
+            if (password !== confirm_password) {
+                return false;
+            }
+
+            // Additional validation checks for other fields (e.g., pattern matching)
+
+            // If all validation checks pass, return true
+            return true;
+        }
+    </script>
+</body>
+</html>
